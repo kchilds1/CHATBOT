@@ -1,16 +1,23 @@
 //Import
 const express = require("express");
-const app = express();
-require("dotenv").config();
-app.use(express.static('public'))
 const OpenAI = require("openai");
+const app = express();
+ app.use(express.json())
+ const bodyParser = require('body-parser');
+ app.use(bodyParser.json());
+ const cors = require('cors');
+ app.use(cors());
+
+ require("dotenv").config();
+app.use(express.static('public'))
 
 
 
 
 //creating an instance of the openai connection using the API key
 const openai = new OpenAI({
-  apiKey: process.env.OPENAIAPI_KEY
+   apiKey: process.env.OPENAIAPI_KEY
+  
 });
 //  // Start the server
 app.listen(5000, () => {
@@ -23,7 +30,7 @@ app.listen(5000, () => {
 app.post('/chat', async(req, res) => {
   try{
 const chatCompletion = await openai.chat.completions.create({
-  model: "text-davinci-003",
+  model: "gpt-3.5-turbo",
   messages: [{"role": "user", "content": req.body.question}
 ]
 })
