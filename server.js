@@ -15,7 +15,7 @@ app.use(express.static('public'))
 
 
 //creating an instance of the openai connection using the API key
-const openai = new OpenAI({
+const x = new OpenAI({
    apiKey: process.env.OPENAIAPI_KEY
   
 });
@@ -29,13 +29,26 @@ app.listen(5000, () => {
 //Configuration of Model,route, and messages
 app.post('/chat', async(req, res) => {
   try{
-const chatCompletion = await openai.chat.completions.create({
+const chatCompletion = await x.chat.completions.create({
   model: "gpt-3.5-turbo",
-  messages: [{"role": "user", "content": req.body.question}
-]
+  messages: [{"role": "user", "content": req.body.question}],
+  max_tokens:100
 })
-
-res.status(200).json({message: resp.data.choices[0].message.content})
+console.log(chatCompletion)
+// res.status(200).json({message: res.data.choices[0].message.content})
+// res.status(200).json({message: res.data})
+if (
+  chatCompletion &&
+  chatCompletion.choices &&
+  chatCompletion.choices.length > 0 &&
+  chatCompletion.choices[0].message &&
+  chatCompletion.choices[0].message.content
+) {
+  const responseMessage = chatCompletion.choices[0].message.content;
+  res.status(200).json({ message: responseMessage });
+} else {
+  res.status(200).json({ message: "Unexpected response structure" });
+}
   } catch(e) {
       res.status(400).json({message: e.message})
   }
