@@ -1,43 +1,51 @@
 #chat-area {
-    margin: 0 auto;
-    width: 80%;
-    height: 500px;
-    overflow:scroll;
-    border: 1px solid gray;
-    border-radius: 4px;
+  margin: 0 auto;
+  width: 80%;
+  height: 500px;
+  overflow: scroll;
+  border: 1px solid gray;
+  border-radius: 4px;
 }
 
-.input {            
-    width: 100%;
+.input {
+  width: 100%;
 }
 
-.submit-area{
-    justify-content: center;
-    display: flex;
-    margin: 20px auto;
-    width: 80%;            
-}       
+.submit-area {
+  justify-content: center;
+  display: flex;
+  margin: 20px auto;
+  width: 80%;
+}
 
 textarea {
-    width: 100%;
+  margin-top: 4px;
+  width: 100%;
 }
 
 .box {
-    width: 96%;
-    margin: 0 auto;
-    padding: 10px 10px;
-    background-color: #C4DBFE;
-    margin: 10px auto;            
+  width: 96%;
+  margin: 0 auto;
+  padding: 10px 10px;
+  background-color: #c4dbfe;
+  margin: 10px auto;
 }
 
 .answer {
-    background-color: aquamarine;
+  background-color: aquamarine;
 }
 
 button {
-    background-color: #004089;
-    color: white;
-    padding: 10px 10px;
-    border-radius: 5px;
-    border: none;
+  margin-left: 45%;
+  margin-right: 45%;
+  background-color: #004089;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }
