@@ -20,25 +20,23 @@ async function getResponse() {
   document.getElementById("input").value = "";
 
   //send the question to our server so that the server can send it to the OpenAI API and send us back a response
-  let res = await fetch('http://localhost:5000/chat', 
-  {
-    method: 'POST',
+  let res = await fetch("http://localhost:5000/chat", {
+    method: "POST",
     headers: {
-      "Content-Type": 'application/json'                
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      question: inputText          
-    })
-  }
-)
-    
-const data = await res.json() 
+      question: inputText,
+    }),
+  });
 
-//If the response has a message property, we add the message content to the chat area in the UI
-if(data.message) {
-    const answer = document.createElement('div')
-    answer.innerHTML = data.message
-    answer.classList.add("box", "answer")
-    parentDiv.appendChild(answer)
+  const data = await res.json();
+
+  //If the response has a message property, we add the message content to the chat area in the UI
+  if (data.message) {
+    const answer = document.createElement("div");
+    answer.innerHTML = data.message;
+    answer.classList.add("box", "answer");
+    parentDiv.appendChild(answer);
   }
 }
